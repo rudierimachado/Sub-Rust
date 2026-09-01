@@ -1,0 +1,82 @@
+SUB-RUST: O NÚCLEO (3ª Pessoa)
+Gênero: Shooter de Sobrevivência e Ação em 3ª Pessoa (TPS / Survival Horror)
+
+Câmera: 3ª Pessoa sobre o ombro (estilo Dead Space, Resident Evil Remakes, Remnant: From the Ashes).
+
+Estilo Visual: Bunkers e silos industriais, poeira, gelo e luzes de emergência.
+
+Sem Cutscenes: Toda a progressão é 100% jogada em tempo real.
+
+1. Visão de Câmera e Destaque Visual em 3ª Pessoa
+Câmera Dinâmica: A câmera fica próxima do ombro direito. Ao mirar, ela fecha um pouco mais para dar precisão ao tiro.
+
+Presença Corporal: Você vê o seu traje industrial reagindo ao ambiente:
+
+No Frio: As costas do traje começam a criar uma camada de gelo e o personagem anda encolhido/tremendo.
+
+Ao Tomar Dano: Marcas de rasgo e fumaça saem do traje.
+
+HUD Integrado no Próprio Personagem (Estilo Dead Space):
+
+Mochila/Costas: Um tubo de néon circular nas costas indica a Vida/Temperatura Corporal (Muda de Vermelho/Azul conforme o frio).
+
+No Pulso / Ombro: O contador digital ou analógico mostrando a Pressão de Ar da arma e os Filtros de Máscara.
+
+2. O Objetivo Final (A Fuga do Núcleo)
+O complexo possui 3 Setores Profundos. Cada um abriga um Chefe Guardião que protege o acesso ao reator central.
+
+O Loop Principal:
+
+Explorar os setores para encontrar recursos, munição e peças.
+
+Derrotar os 3 Chefes Guardiões para obter os códigos do Núcleo.
+
+Infiltrar-se na Câmara do Núcleo e acionar a Bomba Purificadora para varrer a contaminação.
+
+A Fuga Final (3 Minutos): O bunker entra em colapso. O temporizador aparece na tela, as paredes começam a cair e uma horda gigante de mutantes surge. Você precisa correr atirando de volta até o elevador da superfície.
+
+3. Arsenal de Armas em 3ª Pessoa
+Na 3ª pessoa, ver o personagem manusear as armas e recarregá-las dá uma sensação muito satisfatória:
+
+Espingarda Pneumática (Inicial):
+
+Dispara esferas de aço com ar comprimido. Você vê o personagem bombeando a manivela da arma na lateral com a mão esquerda enquanto segura a empunhadura.
+
+Escopeta de Cano Duplo "Sucata":
+
+Dano absurdo de perto. Atordoa os inimigos e faz os Rastejadores voarem para trás com a física do impacto (Ragdoll).
+
+Nailgun Automático (Pregos):
+
+Cadência rápida para conter ondas de inimigos menores.
+
+Lança-Chamas de Bolso:
+
+Essencial para derreter gelo em portas trancadas, queimar teias de mutantes e afastar inimigos vulneráveis ao fogo.
+
+Harpoon Railgun (Arma Lendária):
+
+Dispara estacas pesadas. Na 3ª pessoa é muito gratificante ver os inimigos sendo empurrados e pregados nas paredes do cenário.
+
+4. Inimigos e Chefes (Ação em 3ª Pessoa)
+Inimigos Comuns:
+Rastejador (Crawler):
+
+Ágil e cego. Anda agachado/engatinhando rápido pelas paredes e chão. Tenta pular nas costas do jogador.
+
+Mecânica de Esquiva: Se ele pular, o jogador pode apertar o botão de Roll / Esquiva para se jogar para o lado na 3ª pessoa.
+
+Mutante Blindado (Juggernaut):
+
+Lento e pesado. Como a câmera é em 3ª pessoa, é fácil circular o inimigo (strafe) para atirar no ponto fraco exposto nas costas dele.
+
+Cuspidor (Spitter):
+
+Fica em plataformas altas lançando ácido. O ácido cria uma poça tóxica no chão que reduz sua mobilidade.
+
+Os Chefes Finais:
+Chefe 1 - O Colosso de Gelo: Uma criatura coberta de armadura de gelo. O jogador precisa esquivar das suas investidas e usar o Lança-Chamas para derreter sua carcaça antes de atirar.
+
+Chefe 2 - A Ninhada da Ventilação: Uma criatura gigante que escala pelas paredes e teto da arena. Exige mirar para cima e ativar os holofotes da sala para fazê-la cair no chão.
+
+Chefe 3 - O Guardião do Núcleo: Um robô/mutante com lança-mísseis e escudo de energia. A luta exige esquivar de ondas de choque no chão e destruir as baterias da arena.
