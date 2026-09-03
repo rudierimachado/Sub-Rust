@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1160" viewBox="0 0 1800 1160">
+  <rect width="1800" height="1160" fill="#120b0b"/>
+  <text x="70" y="70" fill="#f1cf94" font-family="serif" font-size="38">CASTELO DAS CINZAS — PLANTA DA FASE 01</text>
+  <text x="72" y="104" fill="#b99874" font-family="sans-serif" font-size="17">Rota principal dourada · exploração azul · atalhos verdes · quedas/ascensões verticais tracejadas</text>
+  <g fill="none" stroke-linecap="round">
+    <path d="M160 960 L350 960 L520 860 L700 860 L875 720 L1060 580 L1260 430 L1465 255" stroke="#e4a449" stroke-width="15"/>
+    <path d="M350 960 L350 760 L570 690 L700 860" stroke="#517b92" stroke-width="10"/>
+    <path d="M520 860 L510 1050 L770 1050 L875 720" stroke="#517b92" stroke-width="10"/>
+    <path d="M700 860 L900 910 L1125 860 L1060 580" stroke="#517b92" stroke-width="10"/>
+    <path d="M875 720 L760 560 L970 430 L1060 580" stroke="#517b92" stroke-width="10"/>
+    <path d="M1060 580 L1220 700 L1400 630 L1260 430" stroke="#517b92" stroke-width="10"/>
+    <path d="M1260 430 L1375 525 L1550 460 L1465 255" stroke="#517b92" stroke-width="10"/>
+    <path d="M350 760 L1125 860" stroke="#5fae78" stroke-width="9" stroke-dasharray="20 12"/>
+    <path d="M570 690 L970 430" stroke="#5fae78" stroke-width="9" stroke-dasharray="20 12"/>
+    <path d="M760 560 L1220 700" stroke="#5fae78" stroke-width="9" stroke-dasharray="20 12"/>
+    <path d="M900 910 L760 1050" stroke="#a76850" stroke-width="8" stroke-dasharray="9 15"/>
+  </g>
+  <g font-family="sans-serif" font-size="17" font-weight="600" text-anchor="middle">
+    <g fill="#39221a" stroke="#e4a449" stroke-width="4"><rect x="65" y="900" width="190" height="120" rx="10"/><rect x="270" y="900" width="160" height="120" rx="10"/><rect x="440" y="800" width="160" height="120" rx="10"/><rect x="620" y="800" width="160" height="120" rx="10"/><rect x="790" y="660" width="170" height="120" rx="10"/><rect x="975" y="520" width="170" height="120" rx="10"/><rect x="1175" y="370" width="170" height="120" rx="10"/><rect x="1380" y="195" width="170" height="120" rx="10"/></g>
+    <g fill="#202e38" stroke="#517b92" stroke-width="3"><rect x="270" y="690" width="160" height="110" rx="10"/><rect x="490" y="630" width="160" height="110" rx="10"/><rect x="420" y="990" width="180" height="100" rx="10"/><rect x="680" y="990" width="180" height="100" rx="10"/><rect x="820" y="850" width="160" height="110" rx="10"/><rect x="1040" y="800" width="170" height="110" rx="10"/><rect x="680" y="500" width="160" height="110" rx="10"/><rect x="900" y="370" width="160" height="110" rx="10"/><rect x="1150" y="640" width="150" height="110" rx="10"/><rect x="1325" y="580" width="160" height="110" rx="10"/><rect x="1310" y="470" width="150" height="80" rx="10"/><rect x="1480" y="395" width="190" height="100" rx="10"/></g>
+    <g fill="#263928" stroke="#5fae78" stroke-width="3"><rect x="550" y="710" width="120" height="70" rx="10"/><rect x="770" y="590" width="130" height="60" rx="10"/><rect x="1010" y="670" width="130" height="70" rx="10"/><rect x="1460" y="500" width="130" height="70" rx="10"/></g>
+    <g fill="#f6dfb4"><text x="160" y="945">00 · PORTÃO</text><text x="160" y="971">checkpoint</text><text x="350" y="945">01 · PÁTIO</text><text x="350" y="971">entrada</text><text x="520" y="845">02 · GALERIA</text><text x="520" y="871">leste</text><text x="700" y="845">03 · SALÃO</text><text x="700" y="871">colunas</text><text x="875" y="705">08 · PONTE</text><text x="875" y="731">correntes</text><text x="1060" y="565">14 · ARQUIVOS</text><text x="1060" y="591">altos</text><text x="1260" y="415">19 · MURALHA</text><text x="1260" y="441">interna</text><text x="1465" y="240">23 · TORRE</text><text x="1465" y="266">CHEFE</text></g>
+    <g fill="#d1e5ee"><text x="350" y="730">04 · PRISÕES</text><text x="350" y="656">05 · OSSUÁRIO</text><text x="510" y="1028">06 · POÇOS</text><text x="510" y="1054">cinzentos</text><text x="770" y="1028">07 · DRENAGEM</text><text x="900" y="888">09 · OFICINA</text><text x="1125" y="838">10 · COZINHAS</text><text x="760" y="538">11 · SACRISTIA</text><text x="980" y="408">12 · CAPELA</text><text x="1225" y="678">15 · JARDIM</text><text x="1405" y="618">16 · TORRES</text><text x="1385" y="500">17 · ELEVADOR</text><text x="1575" y="435">20 · PINÁCULO</text></g>
+    <g fill="#cbe6cf"><text x="610" y="750">atalho A</text><text x="835" y="625">atalho B</text><text x="1075" y="710">atalho C</text><text x="1525" y="540">segredo</text></g>
+  </g>
+  <g font-family="sans-serif" font-size="16" fill="#d9c8b5"><text x="70" y="1115">↓ Queda para Poços/Drenagem: rota de risco com recursos.  ↑ Elevador e atalhos liberam retorno rápido ao Salão.</text><text x="1180" y="1115">Escala alvo: 22–28 salas, 2h–3h primeira exploração completa.</text></g>
+</svg>
