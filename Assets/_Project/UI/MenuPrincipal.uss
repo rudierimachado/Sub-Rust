@@ -1,0 +1,123 @@
+/* Menu principal - Sub-Rust.
+   Cores puxadas da HUD do jogo (ambar sobre quase-preto) pra o menu e o jogo
+   falarem a mesma lingua. Layout e' todo flexbox: nada de posicao em pixel. */
+
+.raiz {
+    flex-grow: 1;
+    background-color: rgb(10, 8, 7);
+    align-items: center;
+    justify-content: center;
+}
+
+.coluna {
+    width: 460px;
+    max-width: 92%;
+    align-items: stretch;
+}
+
+.titulo {
+    -unity-font-style: bold;
+    font-size: 58px;
+    color: rgb(237, 199, 120);
+    -unity-text-align: middle-center;
+    margin-bottom: 4px;
+    letter-spacing: 6px;
+}
+
+.subtitulo {
+    font-size: 15px;
+    color: rgb(120, 100, 78);
+    -unity-text-align: middle-center;
+    margin-bottom: 38px;
+}
+
+.botao {
+    height: 54px;
+    margin-bottom: 12px;
+    font-size: 19px;
+    color: rgb(232, 218, 190);
+    background-color: rgb(26, 21, 18);
+    border-left-width: 3px;
+    border-left-color: rgb(120, 78, 30);
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 2px;
+    -unity-text-align: middle-left;
+    padding-left: 22px;
+    transition-property: background-color, border-left-color, padding-left;
+    transition-duration: 0.12s;
+}
+
+.botao:hover {
+    background-color: rgb(46, 34, 24);
+    border-left-color: rgb(232, 168, 60);
+    padding-left: 30px;
+}
+
+.botao:active {
+    background-color: rgb(70, 48, 28);
+}
+
+.botao--secundario {
+    height: 44px;
+    font-size: 16px;
+    color: rgb(150, 136, 118);
+    border-left-color: rgb(60, 48, 38);
+}
+
+.linha {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.rotulo {
+    font-size: 14px;
+    color: rgb(150, 132, 104);
+    margin-bottom: 6px;
+}
+
+.campo {
+    height: 46px;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.campo > .unity-base-text-field__input {
+    background-color: rgb(20, 16, 14);
+    border-color: rgb(70, 56, 42);
+    border-width: 1px;
+    color: rgb(240, 228, 205);
+    padding-left: 12px;
+}
+
+.caixa-ip {
+    background-color: rgb(20, 16, 14);
+    border-left-width: 3px;
+    border-left-color: rgb(120, 78, 30);
+    padding: 14px 18px;
+    margin-bottom: 20px;
+}
+
+.ip-valor {
+    font-size: 24px;
+    color: rgb(237, 199, 120);
+    -unity-font-style: bold;
+}
+
+.status {
+    font-size: 15px;
+    color: rgb(150, 132, 104);
+    -unity-text-align: middle-center;
+    margin-top: 14px;
+    white-space: normal;
+}
+
+.status--erro {
+    color: rgb(214, 108, 84);
+}
+
+.escondido {
+    display: none;
+}
