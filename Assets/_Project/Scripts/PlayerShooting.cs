@@ -47,6 +47,17 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Color corFogo = new Color(1f, 0.72f, 0.32f);
     [SerializeField] private Color corImpacto = new Color(1f, 0.35f, 0.12f);
 
+    [Header("Municao")]
+    [SerializeField] private int cartuchosNoPente = 6;
+    [SerializeField] private float tempoRecarga = 1.4f;
+
+    public int Cartuchos { get; private set; }
+    public int CartuchosMax => cartuchosNoPente;
+    public bool Recarregando { get; private set; }
+
+    /// <summary>(atual, maximo, recarregando) - o HUD de balas escuta aqui.</summary>
+    public static event System.Action<int, int, bool> OnMunicaoMudou;
+
     private Transform arma;
     private Transform boca;
     private PlayerMovement2_5D movimento;
@@ -84,20 +95,58 @@ public class PlayerShooting : MonoBehaviour
         // A pose posicionada a mao no editor e' a verdade - guardar antes de qualquer coice.
         repousoLocal = arma.localRotation;
         repousoValido = true;
+
+        Cartuchos = cartuchosNoPente;
+    }
+
+    private void Start()
+    {
+        PublicarEstado();
+    }
+
+    /// <summary>Re-dispara o evento de municao com os valores atuais. Mesmo motivo do
+    /// PlayerHealth.PublicarEstado: a HUD carrega numa cena aditiva depois deste Start.</summary>
+    public void PublicarEstado()
+    {
+        OnMunicaoMudou?.Invoke(Cartuchos, cartuchosNoPente, Recarregando);
     }
 
     private void Update()
     {
         if (boca == null) return;
 
+        bool pediuRecarga = Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame;
+        if (pediuRecarga && !Recarregando && Cartuchos < cartuchosNoPente)
+            StartCoroutine(Recarregar());
+
         bool atirou = (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
                    || (Keyboard.current != null && Keyboard.current.kKey.wasPressedThisFrame);
 
-        if (atirou && Time.time >= proximoTiro)
+        if (!atirou || Time.time < proximoTiro || Recarregando) return;
+
+        if (Cartuchos <= 0)
         {
-            proximoTiro = Time.time + Cadencia;
-            Atirar();
+            // pente vazio: recarrega sozinho em vez de so' nao responder
+            StartCoroutine(Recarregar());
+            return;
         }
+
+        Cartuchos--;
+        OnMunicaoMudou?.Invoke(Cartuchos, cartuchosNoPente, false);
+        proximoTiro = Time.time + Cadencia;
+        Atirar();
+    }
+
+    private IEnumerator Recarregar()
+    {
+        Recarregando = true;
+        OnMunicaoMudou?.Invoke(Cartuchos, cartuchosNoPente, true);
+
+        yield return new WaitForSeconds(tempoRecarga);
+
+        Cartuchos = cartuchosNoPente;
+        Recarregando = false;
+        OnMunicaoMudou?.Invoke(Cartuchos, cartuchosNoPente, false);
     }
 
     private void Atirar()

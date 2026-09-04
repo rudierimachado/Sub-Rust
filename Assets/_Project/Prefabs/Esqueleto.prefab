@@ -74,14 +74,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3137d3893d32e5f4797baf0ebf26e767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  velocidade: 2
-  alcanceAtaque: 1.3
-  alcancePerseguicao: 12
-  cooldownAtaque: 1.8
-  dano: 60
+  velocidade: 3.3
+  velocidadePatrulha: 1.1
+  gravidade: -25
+  raioVisao: 11
+  anguloVisao: 120
+  raioAudicao: 3.5
+  alturaOlho: 1.45
+  bloqueiaVisao:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  distanciaDeGolpe: 1.15
+  distanciaDeRecuo: 1.9
+  tempoDeMira: 0.22
+  tempoDeRecuo: 0.3
+  cooldownAtaque: 0.9
+  dano: 130
   momentoDoGolpe: 0.25
   alcanceDano: 1.1
-  gravidade: -25
+  raioPatrulha: 4
+  pausaNaPonta: 1.2
+  memoriaSegundos: 4
+  tempoProcurando: 2.5
 --- !u!114 &8251405190655909831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d883b7a30909af44f8ba711a44b168fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 30
+  maxHealth: 100
   almasAoMorrer: 3
   chanceFrasco: 0.3
 --- !u!114 &7663781415993556646
@@ -124,8 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101947fc110a89a459cbb40e1f3c61d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageFeedback
-  forcaRecuo: 1.8
-  duracaoRecuo: 0.12
+  forcaRecuo: 7
+  duracaoRecuo: 0.18
+  danoDeReferencia: 60
+  escalaMinima: 0.45
+  escalaMaxima: 2.5
   corFlash: {r: 1, g: 0.9, b: 0.6, a: 1}
   duracaoFlash: 0.1
 --- !u!1 &5232116577498914293

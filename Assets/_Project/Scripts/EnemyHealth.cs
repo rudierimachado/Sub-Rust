@@ -29,7 +29,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (health <= 0f) { Morrer(); return; }
 
-        feedback?.Reagir(hitPoint);
+        // passa o dano: o empurrao escala com a pancada (ver EnemyDamageFeedback)
+        feedback?.Reagir(hitPoint, damage);
     }
 
     private void Morrer()

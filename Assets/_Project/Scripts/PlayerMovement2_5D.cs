@@ -77,7 +77,11 @@ public class PlayerMovement2_5D : MonoBehaviour
     private void Update()
     {
         float input = LerInput();
-        bool correndo = Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed;
+
+        // Corrida e' locomocao livre. Stamina fica reservada para acoes de combate.
+        bool correndo = Keyboard.current != null
+                     && Keyboard.current.leftShiftKey.isPressed
+                     && Mathf.Abs(input) > 0.01f;
 
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && controller.isGrounded)
         {
