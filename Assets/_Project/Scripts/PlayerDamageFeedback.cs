@@ -59,10 +59,23 @@ public class PlayerDamageFeedback : MonoBehaviour
     private void AoTomarDano(float dano, Vector3 origem)
     {
         animator?.SetTrigger(HitTrigger);
-        impulso?.GenerateImpulseWithForce(forcaTremida);
 
         // Empurra para o lado OPOSTO a quem bateu.
         float direcao = transform.position.x >= origem.x ? 1f : -1f;
+
+        // SANGUE, o mesmo efeito que os inimigos ja' tinham (ImpactoDeGolpe): jorro,
+        // nevoa, clarao e mancha no chao. Faltava so' no jogador - levar dano era um
+        // flash e nada mais, enquanto acertar um inimigo esguichava. A intensidade
+        // escala com o tamanho da pancada, entao um golpe pesado sangra mais.
+        //
+        // Sai na altura do peito e na direcao CONTRARIA ao golpe, acompanhando o
+        // empurrao.
+        float intensidade = Mathf.Clamp(dano / 60f, 0.5f, 2.0f);
+        ImpactoDeGolpe.Tocar(transform.position + Vector3.up * 1.15f,
+                             new Vector3(direcao, 0.3f, 0f), intensidade);
+
+        // Tremida escala com o dano: pancada grande sacode mais.
+        impulso?.GenerateImpulseWithForce(forcaTremida * intensidade);
         if (rotinaEmpurrao != null) StopCoroutine(rotinaEmpurrao);
         rotinaEmpurrao = StartCoroutine(Empurrar(direcao));
 

@@ -1,0 +1,119 @@
+.pause-root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.48);
+}
+
+.pause-vignette {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(3, 5, 10, 0.56);
+}
+
+.pause-panel {
+    width: 560px;
+    max-width: 86%;
+    padding-left: 38px;
+    padding-right: 38px;
+    padding-top: 34px;
+    padding-bottom: 30px;
+    align-items: stretch;
+    background-color: rgba(3, 5, 9, 0.84);
+    border-left-width: 1px;
+    border-left-color: rgba(152, 21, 29, 0.86);
+    border-right-width: 1px;
+    border-right-color: rgba(210, 220, 232, 0.08);
+    border-top-width: 1px;
+    border-top-color: rgba(210, 220, 232, 0.14);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.68);
+    border-radius: 18px;
+}
+
+.pause-logo {
+    height: 150px;
+    margin-left: -18px;
+    margin-right: -18px;
+    margin-bottom: 6px;
+    background-image: url("project://database/Assets/_Project/UI/Backgrounds/logo_sub_rust_blood.png");
+    background-size: contain;
+    background-position: center;
+}
+
+.pause-title {
+    -unity-font-style: bold;
+    font-size: 15px;
+    color: rgba(178, 185, 196, 0.88);
+    -unity-text-align: middle-center;
+    margin-bottom: 24px;
+    letter-spacing: 5px;
+}
+
+.pause-button {
+    height: 56px;
+    margin-bottom: 11px;
+    padding-left: 26px;
+    font-size: 19px;
+    color: rgb(224, 228, 235);
+    background-color: rgba(9, 14, 21, 0.82);
+    border-left-width: 2px;
+    border-left-color: rgba(102, 111, 128, 0.72);
+    border-right-width: 1px;
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.12);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.58);
+    border-radius: 15px;
+    -unity-text-align: middle-left;
+    transition-property: background-color, border-left-color, padding-left, color;
+    transition-duration: 0.10s;
+}
+
+.pause-button:hover {
+    background-color: rgba(32, 40, 52, 0.94);
+    border-left-color: rgb(190, 21, 29);
+    color: rgb(255, 245, 238);
+    padding-left: 36px;
+}
+
+.pause-button:active {
+    background-color: rgba(84, 12, 18, 0.94);
+}
+
+.pause-button--primary {
+    background-color: rgba(70, 13, 18, 0.88);
+    border-left-color: rgb(207, 28, 38);
+}
+
+.pause-button--danger {
+    color: rgb(226, 174, 174);
+    border-left-color: rgba(145, 20, 22, 0.82);
+}
+
+.pause-button--disabled {
+    color: rgba(132, 139, 150, 0.82);
+    background-color: rgba(7, 9, 13, 0.62);
+    border-left-color: rgba(63, 68, 78, 0.6);
+}
+
+.pause-status {
+    min-height: 24px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgb(172, 179, 190);
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.escondido {
+    display: none;
+}
