@@ -26,6 +26,15 @@ public class FallDamage : MonoBehaviour
     [Tooltip("Altura em que o dano chega ao maximo.")]
     [SerializeField] private float alturaLetal = 18f;
 
+    [Header("Abismo")]
+    [Tooltip("Altura abaixo da qual o jogador morre na hora. MEDIDO: o chao mais baixo " +
+             "do castelo com colisor e' o Piso_Cozinha em y=-47,3, entao -60 fica bem " +
+             "abaixo de qualquer piso real e da' uns 13 m de queda antes de valer. " +
+             "Existe porque o dano de queda so' acontece ao ATERRISSAR: num buraco sem " +
+             "fundo o jogador nunca encosta em nada e cairia para sempre, vivo, sem " +
+             "jogo nenhum acontecendo.")]
+    [SerializeField] private float alturaDoAbismo = -60f;
+
     [Header("Dano")]
     [Tooltip("Fracao da vida MAXIMA levada ao cair de alturaLetal ou mais.")]
     [Range(0f, 1f)]
@@ -45,6 +54,13 @@ public class FallDamage : MonoBehaviour
 
     private void Update()
     {
+        // ABISMO: checado antes de tudo e sem depender de aterrissar.
+        if (vida != null && !vida.Morto && transform.position.y < alturaDoAbismo)
+        {
+            vida.MatarInstantaneamente();
+            return;
+        }
+
         bool noChao = movimento.NoChao;
 
         if (!noChao)

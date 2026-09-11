@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements">
+    <engine:Style src="project://database/Assets/_Project/UI/PauseMenu.uss" />
+    <engine:VisualElement name="pause-root" class="pause-root escondido">
+        <engine:VisualElement class="pause-vignette" />
+        <engine:VisualElement class="pause-panel">
+            <engine:VisualElement class="pause-logo" />
+            <engine:Label text="PAUSADO" class="pause-title" />
+            <engine:Button name="btn-continuar" text="Continuar" class="pause-button pause-button--primary" />
+            <engine:Button name="btn-salvar" text="Salvar" class="pause-button pause-button--disabled" />
+            <engine:Button name="btn-menu" text="Voltar ao menu" class="pause-button" />
+            <engine:Button name="btn-sair" text="Sair do jogo" class="pause-button pause-button--danger" />
+            <engine:Label name="lbl-pause-status" text="" class="pause-status" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

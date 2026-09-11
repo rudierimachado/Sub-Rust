@@ -8,10 +8,8 @@ using UnityEngine.InputSystem;
 /// que o personagem encara, se nao houver tecla), com invulnerabilidade durante o
 /// movimento.
 ///
-/// NAO e' teleporte instantaneo de proposito: o movimento passa pelo CharacterController,
-/// entao parede e inimigo continuam bloqueando. Um teleporte puro atravessaria a
-/// geometria da fase. A leitura de "piscada" vem da duracao curta + rastro fantasma,
-/// nao de pular o percurso.
+/// Durante o dash o jogador ATRAVESSA inimigos (layer Inimigo) mas continua bloqueado
+/// por paredes e chao. A leitura de "piscada" vem da duracao curta + rastro fantasma.
 ///
 /// Anexar na RAIZ do Player (mesmo objeto do CharacterController e do PlayerHealth).
 /// </summary>
@@ -24,7 +22,7 @@ public class PlayerDodge : MonoBehaviour
     [SerializeField] private float recarga = 0.45f;
 
     [Header("Custo")]
-    [SerializeField] private float custoStamina = 120f;
+    [SerializeField] private float custoStamina = 18.5f;
 
     [Header("Invulnerabilidade")]
     [Tooltip("Sobra de invulnerabilidade depois que o dash termina, pra perdoar o timing.")]
@@ -35,19 +33,28 @@ public class PlayerDodge : MonoBehaviour
     [SerializeField] private float duracaoFantasma = 0.28f;
     [SerializeField] private Color corFantasma = new Color(0.45f, 0.75f, 1f, 0.55f);
 
+    private static readonly LayerMask CamadaInimigo = 1 << 8;
+
     private CharacterController controller;
     private PlayerMovement2_5D movimento;
     private PlayerHealth vida;
+    private SeparacaoDeCorpos separacao;
     private SkinnedMeshRenderer[] malhas;
 
     private float proximaEsquiva;
     private bool esquivando;
+    private LayerMask exclusaoAntes;
+
+    /// <summary>True enquanto o dash esta' ativo. SeparacaoDeCorpos consulta isto
+    /// pra nao empurrar inimigos quando o jogador passa no meio deles.</summary>
+    public bool Esquivando => esquivando;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         movimento = GetComponent<PlayerMovement2_5D>();
         vida = GetComponent<PlayerHealth>();
+        separacao = GetComponent<SeparacaoDeCorpos>();
         malhas = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
@@ -67,18 +74,27 @@ public class PlayerDodge : MonoBehaviour
     }
 
     /// <summary>Direcao apertada agora; sem tecla, esquiva para onde ja' esta olhando.</summary>
-    private float DirecaoEscolhida()
+    private Vector3 DirecaoEscolhida()
     {
+        // Terceira pessoa: esquiva pra onde o WASD aponta EM RELACAO A CAMERA, e o corpo
+        // vira pra la' - esquivar de lado sem virar le' como boneco deslizando.
+        if (movimento != null && movimento.TerceiraPessoa)
+        {
+            Vector3 d = movimento.LerDirecaoDoInput();
+            if (d.sqrMagnitude > 0.01f) { movimento.Encarar(d); return d.normalized; }
+            return movimento.Direcao;
+        }
+
         var kb = Keyboard.current;
         float input = 0f;
         if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) input += 1f;
         if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) input -= 1f;
 
-        if (Mathf.Abs(input) > 0.01f) return Mathf.Sign(input);
-        return movimento != null ? Mathf.Sign(movimento.Facing) : 1f;
+        if (Mathf.Abs(input) > 0.01f) return Vector3.right * Mathf.Sign(input);
+        return Vector3.right * (movimento != null ? Mathf.Sign(movimento.Facing) : 1f);
     }
 
-    private IEnumerator Esquivar(float direcao)
+    private IEnumerator Esquivar(Vector3 direcao)
     {
         esquivando = true;
         if (vida != null) vida.Invulneravel = true;
@@ -87,6 +103,12 @@ public class PlayerDodge : MonoBehaviour
         // o dash briga com o input e sai mais curto do que o configurado.
         bool movimentoEstava = movimento != null && movimento.enabled;
         if (movimento != null) movimento.enabled = false;
+
+        bool separacaoEstava = separacao != null && separacao.enabled;
+        if (separacao != null) separacao.enabled = false;
+
+        exclusaoAntes = controller.excludeLayers;
+        controller.excludeLayers = exclusaoAntes | CamadaInimigo;
 
         StartCoroutine(SoltarFantasmas());
 
@@ -104,12 +126,17 @@ public class PlayerDodge : MonoBehaviour
             for (int i = 0; i < fatias; i++)
             {
                 // gravidade leve durante o dash: sem isso ele flutua ao sair de uma borda
-                controller.Move(Vector3.right * direcao * velocidade * dt + Vector3.down * 4f * dt);
+                controller.Move(direcao * velocidade * dt + Vector3.down * 4f * dt);
             }
 
             t += passo;
             yield return null;
         }
+
+        controller.excludeLayers = exclusaoAntes;
+
+        if (separacao != null && separacaoEstava && (vida == null || !vida.Morto))
+            separacao.enabled = true;
 
         if (movimento != null && movimentoEstava && (vida == null || !vida.Morto))
             movimento.enabled = true;

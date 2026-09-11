@@ -2,8 +2,8 @@ using UnityEngine;
 
 /// <summary>
 /// Vai na raiz do prefab HUD. Resolve o problema de ORDEM: a HUD mora na cena Core,
-/// carregada aditivamente DEPOIS da cena da fase, entao o Start do PlayerHealth /
-/// PlayerShooting ja disparou os eventos quando ninguem estava escutando ainda.
+/// carregada aditivamente DEPOIS da cena da fase, entao o Start do PlayerHealth
+/// ja disparou os eventos quando ninguem estava escutando ainda.
 ///
 /// Aqui a HUD PUXA o estado atual em vez de esperar o proximo evento. Roda tambem
 /// quando o jogador aparece atrasado (troca de fase), tentando por alguns frames.
@@ -40,13 +40,19 @@ public class HudBootstrap : MonoBehaviour
 
     private void Sincronizar()
     {
-        var vida = FindAnyObjectByType<PlayerHealth>(FindObjectsInactive.Exclude);
-        if (vida == null) return;
+        // Em Co-op existem DOIS PlayerHealth na cena (o local e a copia de rede do
+        // outro jogador) - pegar "qualquer um" arriscaria sincronizar a HUD com a
+        // vida/municao de quem nao e' voce. So' conta o Player cujo PlayerNetwork
+        // diz que EhDono (que em modo Solo e' sempre true, sem rede nenhuma).
+        PlayerHealth vidaDoDono = null;
+        foreach (var vida in FindObjectsByType<PlayerHealth>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            var rede = vida.GetComponent<PlayerNetwork>();
+            if (rede == null || rede.EhDono) { vidaDoDono = vida; break; }
+        }
+        if (vidaDoDono == null) return;
 
-        vida.PublicarEstado();
-
-        var arma = FindAnyObjectByType<PlayerShooting>(FindObjectsInactive.Exclude);
-        if (arma != null) arma.PublicarEstado();
+        vidaDoDono.PublicarEstado();
 
         // PlayerCurrency e' estatico: os displays ja leem o valor atual no proprio OnEnable.
         pronto = true;

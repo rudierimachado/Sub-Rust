@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 8251405190655909831}
   - component: {fileID: 7663781415993556646}
   - component: {fileID: 964934101694953023}
-  m_Layer: 0
+  - component: {fileID: 8091261202918799475}
+  - component: {fileID: 8430316172013700710}
+  - component: {fileID: 6598315407283111836}
+  m_Layer: 8
   m_Name: Esqueleto
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -74,27 +77,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3137d3893d32e5f4797baf0ebf26e767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  velocidade: 3.3
+  velocidade: 4
   velocidadePatrulha: 1.1
   gravidade: -25
-  raioVisao: 11
-  anguloVisao: 120
-  raioAudicao: 3.5
+  raioVisao: 14
+  anguloVisao: 150
+  raioAudicao: 7
+  tempoDeReacao: 0.08
   alturaOlho: 1.45
   bloqueiaVisao:
     serializedVersion: 2
     m_Bits: 4294967295
   distanciaDeGolpe: 1.15
-  distanciaDeRecuo: 1.9
-  tempoDeMira: 0.22
-  tempoDeRecuo: 0.3
-  cooldownAtaque: 0.9
-  dano: 130
+  alcanceEmZ: 1.6
+  distanciaDeRecuo: 1.5
+  tempoDeMira: 0.14
+  tempoDeRecuo: 0.18
+  cooldownAtaque: 0.55
+  dano: 20
+  custoDeSerAparado: 38
   momentoDoGolpe: 0.25
+  fimDoGolpe: 0.45
+  avancoNoGolpe: 1.1
+  alcanceEmY: 1.8
   alcanceDano: 1.1
   raioPatrulha: 4
   pausaNaPonta: 1.2
-  memoriaSegundos: 4
+  memoriaSegundos: 6
   tempoProcurando: 2.5
 --- !u!114 &8251405190655909831
 MonoBehaviour:
@@ -108,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d883b7a30909af44f8ba711a44b168fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 100
+  maxHealth: 150
+  folegoPorDano: 0.3
   almasAoMorrer: 3
   chanceFrasco: 0.3
 --- !u!114 &7663781415993556646
@@ -145,6 +155,69 @@ MonoBehaviour:
   escalaMaxima: 2.5
   corFlash: {r: 1, g: 0.9, b: 0.6, a: 1}
   duracaoFlash: 0.1
+--- !u!114 &8091261202918799475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757048322010633474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fee9cfda1cf01549ad1f44bf326e0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStamina
+  maxStamina: 160
+  custoDoAtaque: 40
+  regenPorSegundo: 22
+  atrasoParaRegenerar: 0.7
+  duracaoDaQuebra: 4.5
+  recuperacaoAposQuebra: 1
+  carenciaEntreQuebras: 1.5
+--- !u!114 &8430316172013700710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757048322010633474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080e5aee3daa7246997b37173482d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BarraDoInimigo
+  altura: 2.05
+  largura: 0.85
+  alturaVida: 0.1
+  alturaStamina: 0.05
+  espacoEntreBarras: 0.025
+  corFundo: {r: 0.05, g: 0.04, b: 0.04, a: 0.85}
+  corVida: {r: 0.72, g: 0.1, b: 0.11, a: 1}
+  corStamina: {r: 0.95, g: 0.74, b: 0.25, a: 1}
+  esconderIntacto: 0
+--- !u!114 &6598315407283111836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757048322010633474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e0e1960d8a1834380d696c86217225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExaustaoDoInimigo
+  curvarTronco: 26
+  cabecaCaida: 30
+  bracosPendurados: 22
+  joelhosCedem: 14
+  ritmoDoOfego: 1.7
+  amplitudeDoOfego: 7
+  tremorDeCansaco: 1.2
+  tempoParaDesabar: 0.45
+  tempoParaLevantar: 0.25
+  corDoAviso: {r: 1, g: 0.72, b: 0.15, a: 1}
+  alturaDoAviso: 2.05
 --- !u!1 &5232116577498914293
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
+    "com.unity.ai.assistant": "2.19.0-pre.2",
+    "com.unity.ai.inference": "2.6.1",
     "com.unity.ai.navigation": "2.0.14",
     "com.unity.animation.rigging": "1.4.1",
     "com.unity.cinemachine": "3.1.7",
@@ -20,6 +22,7 @@
     "com.unity.services.vivox": "16.11.0",
     "com.unity.test-framework": "1.7.0",
     "com.unity.timeline": "1.8.12",
+    "com.unity.toonshader": "0.11.0-preview",
     "com.unity.ugui": "2.5.0",
     "com.unity.visualscripting": "1.9.11",
     "com.unity.modules.accessibility": "1.0.0",

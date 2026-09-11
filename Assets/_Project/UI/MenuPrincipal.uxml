@@ -2,45 +2,68 @@
 <engine:UXML xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements">
     <engine:Style src="project://database/Assets/_Project/UI/MenuPrincipal.uss" />
     <engine:VisualElement class="raiz">
-        <engine:VisualElement class="coluna">
+        <engine:VisualElement class="sombra-fundo" />
+        <engine:VisualElement class="grade-fina" />
+        <engine:VisualElement class="conteudo">
+            <engine:VisualElement class="painel">
+                <engine:VisualElement class="logo-sub-rust" />
 
-            <engine:Label text="SUB-RUST" class="titulo" />
-            <engine:Label text="Castelo das Cinzas" class="subtitulo" />
-
-            <!-- Tela 1: escolha do modo -->
-            <engine:VisualElement name="tela-principal">
-                <engine:Button name="btn-solo" text="Jogar solo" class="botao" />
-                <engine:Button name="btn-coop" text="Cooperativo (rede local)" class="botao" />
-                <engine:Button name="btn-sair" text="Sair" class="botao botao--secundario" />
-            </engine:VisualElement>
-
-            <!-- Tela 2: hospedar ou entrar -->
-            <engine:VisualElement name="tela-coop" class="escondido">
-                <engine:Button name="btn-hospedar" text="Hospedar partida" class="botao" />
-                <engine:Button name="btn-entrar" text="Entrar em uma partida" class="botao" />
-                <engine:Button name="btn-voltar-coop" text="Voltar" class="botao botao--secundario" />
-            </engine:VisualElement>
-
-            <!-- Tela 3: hospedando, mostrando o IP -->
-            <engine:VisualElement name="tela-hospedando" class="escondido">
-                <engine:Label text="Passe este endereco para o outro jogador:" class="rotulo" />
-                <engine:VisualElement class="caixa-ip">
-                    <engine:Label name="lbl-ip" text="..." class="ip-valor" />
+                <!-- Tela 1: escolha do modo -->
+                <engine:VisualElement name="tela-principal" class="tela">
+                    <engine:Button name="btn-solo" text="Single Player" class="botao botao--principal" />
+                    <engine:Button name="btn-coop" text="Multiplayer" class="botao" />
+                    <engine:Button name="btn-opcoes" text="Opcoes" class="botao" />
+                    <engine:Button name="btn-dev" text="Dev" class="botao botao--secundario" />
+                    <engine:Button name="btn-sair" text="Sair" class="botao botao--secundario" />
                 </engine:VisualElement>
-                <engine:Button name="btn-comecar" text="Comecar partida" class="botao" />
-                <engine:Button name="btn-cancelar-host" text="Cancelar" class="botao botao--secundario" />
+
+                <!-- Tela 6: Dev - nascer direto numa area. Botoes de area sao
+                     GERADOS em C# a partir de DevWarp.Areas (fonte unica), so' o
+                     cabecalho/scroll/voltar ficam fixos aqui. -->
+                <engine:VisualElement name="tela-dev" class="tela escondido">
+                    <engine:Label text="Dev - nascer em qual area?" class="cabecalho-tela" />
+                    <engine:ScrollView name="lista-areas-dev" class="lista-dev" />
+                    <engine:Button name="btn-voltar-dev" text="Voltar" class="botao botao--secundario" />
+                </engine:VisualElement>
+
+                <!-- Tela 2: hospedar ou entrar -->
+                <engine:VisualElement name="tela-coop" class="tela escondido">
+                    <engine:Label text="Multiplayer local" class="cabecalho-tela" />
+                    <engine:Button name="btn-hospedar" text="Hospedar partida" class="botao botao--principal" />
+                    <engine:Button name="btn-entrar" text="Entrar por IP" class="botao" />
+                    <engine:Button name="btn-voltar-coop" text="Voltar" class="botao botao--secundario" />
+                </engine:VisualElement>
+
+                <!-- Tela 3: hospedando, mostrando o IP -->
+                <engine:VisualElement name="tela-hospedando" class="tela escondido">
+                    <engine:Label text="Passe este endereco para o outro jogador:" class="rotulo" />
+                    <engine:VisualElement class="caixa-ip">
+                        <engine:Label name="lbl-ip" text="..." class="ip-valor" />
+                    </engine:VisualElement>
+                    <engine:Button name="btn-comecar" text="Comecar partida" class="botao botao--principal" />
+                    <engine:Button name="btn-cancelar-host" text="Cancelar" class="botao botao--secundario" />
+                </engine:VisualElement>
+
+                <!-- Tela 4: entrar por IP -->
+                <engine:VisualElement name="tela-entrar" class="tela escondido">
+                    <engine:Label text="Endereco de quem esta hospedando:" class="rotulo" />
+                    <engine:TextField name="campo-ip" value="127.0.0.1" class="campo" />
+                    <engine:Button name="btn-conectar" text="Conectar" class="botao botao--principal" />
+                    <engine:Button name="btn-voltar-entrar" text="Voltar" class="botao botao--secundario" />
+                </engine:VisualElement>
+
+                <!-- Tela 5: opcoes basicas -->
+                <engine:VisualElement name="tela-opcoes" class="tela escondido">
+                    <engine:Label text="Opcoes" class="cabecalho-tela" />
+                    <engine:Label text="Volume geral" class="rotulo" />
+                    <engine:Slider name="slider-volume" low-value="0" high-value="1" value="1" class="slider" />
+                    <engine:Toggle name="toggle-tela-cheia" text="Tela cheia" value="true" class="toggle" />
+                    <engine:Button name="btn-aplicar-opcoes" text="Aplicar" class="botao botao--principal" />
+                    <engine:Button name="btn-voltar-opcoes" text="Voltar" class="botao botao--secundario" />
+                </engine:VisualElement>
+
+                <engine:Label name="lbl-status" text="" class="status" />
             </engine:VisualElement>
-
-            <!-- Tela 4: entrar por IP -->
-            <engine:VisualElement name="tela-entrar" class="escondido">
-                <engine:Label text="Endereco de quem esta hospedando:" class="rotulo" />
-                <engine:TextField name="campo-ip" value="127.0.0.1" class="campo" />
-                <engine:Button name="btn-conectar" text="Conectar" class="botao" />
-                <engine:Button name="btn-voltar-entrar" text="Voltar" class="botao botao--secundario" />
-            </engine:VisualElement>
-
-            <engine:Label name="lbl-status" text="" class="status" />
-
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

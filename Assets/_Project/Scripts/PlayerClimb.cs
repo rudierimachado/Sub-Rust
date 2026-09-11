@@ -33,14 +33,12 @@ public class PlayerClimb : MonoBehaviour
     private GameObject armaEsquerda;
     private GameObject armaDireita;
     private PlayerCombat combate;
-    private PlayerShooting tiro;
 
     private Quaternion rotacaoVisualAntesEscalada;
     private Vector3 escalaVisualAntesEscalada;
     private bool armaEsquerdaAtivaAntesEscalada;
     private bool armaDireitaAtivaAntesEscalada;
     private bool combateAtivoAntesEscalada;
-    private bool tiroAtivoAntesEscalada;
     private float zAntesEscalada;
     private float zEscadaAtual;
     private SeparacaoDeCorpos separacao;
@@ -81,7 +79,6 @@ private static readonly int EscalandoParam = Animator.StringToHash("Escalando");
             armaEsquerda = pistola != null ? pistola.gameObject : null;
             armaDireita = espada != null ? espada.gameObject : null;
             combate = visual.GetComponent<PlayerCombat>();
-            tiro = visual.GetComponent<PlayerShooting>();
         }
     }
 
@@ -251,8 +248,8 @@ private static readonly int EscalandoParam = Animator.StringToHash("Escalando");
         // A escada sonda o piso de verdade e devolve o ponto exato de pouso, entao o
         // jogador chega SEMPRE encostado no piso - nao numa altura decorada em campo
         // serializado, que era o que prendia ele no topo quando os dois divergiam.
-        if (escadaAtual.TentarAcharSaida(zAntesEscalada, controller.radius, ladoDesejado, out var destino)
-            && CabeEm(destino))
+        bool achouPiso = escadaAtual.TentarAcharSaida(zAntesEscalada, controller.radius, ladoDesejado, out var destino);
+        if (achouPiso && CabeEm(destino))
         {
             Teleportar(destino);
             Soltar(false);
@@ -260,8 +257,16 @@ private static readonly int EscalandoParam = Animator.StringToHash("Escalando");
         }
 
         // Geometria mal configurada: permanece agarrado em vez de cair no vazio.
-        Debug.LogError($"Escada '{escadaAtual.name}' nao tem piso de saida perto de Y={escadaAtual.TopoY:F2}. " +
-                       "O jogador segue agarrado de proposito.", escadaAtual);
+        // Duas causas bem diferentes escondidas atras do mesmo sintoma - "achou piso
+        // mas nao cabe" (algo bloqueia o espaco de chegada) e' outro problema de
+        // "nao achou piso nenhum" (a sondagem em si falhou), e sem distinguir os dois
+        // qualquer investigacao vira suposicao as cegas.
+        if (!achouPiso)
+            Debug.LogError($"Escada '{escadaAtual.name}' nao tem piso de saida perto de Y={escadaAtual.TopoY:F2} " +
+                           $"(zPlano={zAntesEscalada:F2}, lado={ladoDesejado:F0}). O jogador segue agarrado de proposito.", escadaAtual);
+        else
+            Debug.LogError($"Escada '{escadaAtual.name}' achou piso de saida em {destino:F2} mas o jogador nao " +
+                           "cabe la' (algo solido ocupa o espaco de chegada). O jogador segue agarrado de proposito.", escadaAtual);
     }
 
     /// <summary>Chegou no fim da descida. Mesma ideia da saida no topo: pousa no piso
@@ -305,11 +310,6 @@ private static readonly int EscalandoParam = Animator.StringToHash("Escalando");
             combateAtivoAntesEscalada = combate.enabled;
             combate.enabled = false;
         }
-        if (tiro != null)
-        {
-            tiroAtivoAntesEscalada = tiro.enabled;
-            tiro.enabled = false;
-        }
     }
 
     private void RestaurarEquipamento()
@@ -317,7 +317,6 @@ private static readonly int EscalandoParam = Animator.StringToHash("Escalando");
         if (armaEsquerda != null) armaEsquerda.SetActive(armaEsquerdaAtivaAntesEscalada);
         if (armaDireita != null) armaDireita.SetActive(armaDireitaAtivaAntesEscalada);
         if (combate != null) combate.enabled = combateAtivoAntesEscalada;
-        if (tiro != null) tiro.enabled = tiroAtivoAntesEscalada;
     }
 
     /// <summary>Reposicionamento instantaneo. `controller.Move` NAO serve pra isso: ele
